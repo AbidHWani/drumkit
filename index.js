@@ -1,41 +1,19 @@
-//one can use a loop to add event listener to all the button objects:
-
-/*var lengthOfSelector = document.querySelectorAll(".drum").length;
-
-for(var i=0; i<lengthOfSelector; i++){
-    document.querySelectorAll(".drum")[i].addEventListener("click", function(){
-        alert("I got clicked")
-    })
-};*/
-
-/////////////////////////////using for loop://////////////////////
-
-/*var lengthOfSelector = document.querySelectorAll(".drum").length;
-
-var length = 0;
-while (length<lengthOfSelector){
-    document.querySelectorAll(".drum")[length].addEventListener("click", function(){
-        alert("I got clicked");
-    })
-    length++;
-}*/
-
-
-/////////////////// adding audio to the buttons:///////////////////////////////////////////
-
-
 var numberOfDrumButtons = document.querySelectorAll(".drum").length;
+
+
 
 for (var i=0; i<numberOfDrumButtons; i++){
     document.querySelectorAll(".drum")[i].addEventListener("click", function(){
         var dgdg = this.innerHTML;
         makeSound(dgdg);
+        animation(dgdg);
     })};
 
 //////////////////////////////////responding to key strokes instead of click///////////////////
 
 document.addEventListener("keydown", function(event){
     makeSound(event.key)
+    animation(event.key);
 });
   
 function makeSound(key){
@@ -71,4 +49,14 @@ function makeSound(key){
         default:
             break;
     }
+}
+
+///////////adding animation to the button/key presses/////////////
+
+function animation(currentKey){
+    document.querySelector("." + currentKey).classList.add("pressed");
+    setTimeout(function(){
+        document.querySelector("." + currentKey).classList.remove("pressed");
+    }, 100);
+
 }
